@@ -1,0 +1,17 @@
+**/*.md
+**/.gitignore
+**/.gitattributes
+**/*.DS_Store
+
+src/__tests
+src/__tests__
+coverage
+*.test.*
+
+.git
+*.env*
+!.env.example
+
+node_modules
+package-lock.json
+# use yarn.lock

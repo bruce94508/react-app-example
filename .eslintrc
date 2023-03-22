@@ -1,0 +1,11 @@
+{
+  "extends": ["universe/node", "universe/web", "universe/shared/typescript-analysis", "react-app", "react-app/jest"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.d.ts"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# example
+version: "3.3"
+services:
+  react-app-template:
+    image: react-app-template
+    ports:
+      - 3000:3000
+    volumes:
+      # manually provide .env for env.sh to make env.config.js
+      - .env.local:/root/.env:ro
+      # env vars unset will use default values in app, check .env.example or README.md
+
+networks:
+  default:
+    driver: bridge
