@@ -1,27 +1,25 @@
-import { AppContextWrapper } from 'components/AppContext';
+import { Navbar } from 'components/Navbar/Navbar';
 import { IntlWrapper } from 'intl/IntlContext';
-import React from 'react';
+import * as React from 'react';
+import 'leaflet/dist/leaflet.css';
+import { Provider } from 'react-redux';
+import { store } from 'store';
+import { FullPageFlexBox } from 'styles/StyledComponent';
 import { ThemeWrapper } from 'styles/ThemeContext';
+import { Wrapper } from 'types';
 
-import logo from './logo.svg';
-import './App.css';
+const AppContextWrapper: Wrapper = (props) => {
+  return <Provider store={store}>{props.children}</Provider>;
+};
 
 function App() {
   return (
     <ThemeWrapper>
       <IntlWrapper>
         <AppContextWrapper>
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.tsx</code> and save to reload.
-              </p>
-              <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                Learn React
-              </a>
-            </header>
-          </div>
+          <FullPageFlexBox height="100vh">
+            <Navbar />
+          </FullPageFlexBox>
         </AppContextWrapper>
       </IntlWrapper>
     </ThemeWrapper>

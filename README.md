@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# 環境變數
+## buildtime
+### docker build args
+1. 無
+### react app  
+1. PUBLIC_URL: \_\_PUBLIC_URL_PLACEHOLDER__，執行期才由 env.sh 帶入
+1. REACT_APP_VERSION: 網站顯示版本號，以 package.json 為準 (由 cicd 自動更新)
+1. REACT_APP_WEB_UPDATED_AT: 網站更新日期，於 docker build 時由系統帶入
+1. 其他: 詳 .env.example
+## runtime
+ - **預設值**: 詳 .env.example 
+ - **配置方式**: 將 .env 掛載進容器，詳 docker-compose.yml
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+|名稱|必要|說明|
+|-|-|-|
+PUBLIC_URL|✔️| 例如 /subpath (不須加尾斜槓)
+REACT_APP_TGOS_ADDRESS_QUERY_APPID|✔️|地址查詢使用之appId
+REACT_APP_TGOS_ADDRESS_QUERY_APIKEY|✔️|地址查詢使用之apiKey
+REACT_APP_TGOS_MAP_SERVICE_APPID|✔️|圖資服務所使用的appId
+REACT_APP_TGOS_MAP_SERVICE_APIKEY|✔️|圖資服務所使用的apiKey
+REACT_APP_STATION_SEARCH_BASEURL| | 站位查詢使用，目前僅支援 elk _search api
+REACT_APP_OTP_SERVICE_BASEURL | | OpenTripPlanner web service otp endpoint
+REACT_APP_TGOS_ADDRESS_QUERY| | 地址查詢，格式詳下文
+REACT_APP_WMTS_PROVIDER| | tgos|nlsc
+REACT_APP_TGOS_TILEAGENT_BASEURL| | TGOS圖資服務
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## URL格式
+ - 以下與URL有關環境變數，其中以大括號包覆之{name}字串，將被程式代換為相對應的值
+### REACT_APP_TGOS_ADDRESS_QUERY
+ - {appId} REACT_APP_TGOS_ADDRESS_QUERY_APPID
+ - {apiKey} REACT_APP_TGOS_ADDRESS_QUERY_APIKEY
+ - {address} 輸入的搜尋字詞
+# 部署
+ - [Drone CI 網址](http://cicd-so-happy.maxwin.com.tw:8080/maxwin-inc/react-app-template)
+目前已經設定好drone CI，docker image會自動在drone的主機上建立，只需要將image檔從drone主機上pull下來即可
+註: docker private repostry第一次使用需要相關設定，見[網址說明](https://hackmd.io/-Ggi0uxvQpK9nnSz21a-fA#Docker-client)
+ - 配置參考 docker-compose.yml

@@ -4,9 +4,8 @@ module.exports = function (app) {
   app.use(
     '/proxy',
     createProxyMiddleware({
-      target: 'url-you-want-to-proxy-to',
+      target: 'http://www.example.com',
       changeOrigin: true,
-      pathRewrite: { '^/proxy': '' },
     })
   );
 };

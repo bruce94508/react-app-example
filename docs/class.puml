@@ -1,0 +1,36 @@
+@startuml class
+
+title "class diagram\nreact-app-template 1.0.0"
+
+interface IOtp {
+  ApiTripPlan
+}
+
+class TripPlan {
+  date: number
+  from: Place
+  to: Place
+  itineraries: Itinerary[]
+  number|undefined getCo2()
+  TripPlan[] toTravelPlans()
+}
+
+class TripPlanHandler {
+  mapCo2PerKmPerson
+  getCo2()
+}
+
+class TripPlanner
+note left: containers
+interface ITripPlanner
+class View
+note left: components
+
+View ..|> ITripPlanner
+TripPlanner .up.|> ITripPlanner
+TripPlanner --> TripPlanHandler
+TripPlanner --> TripPlan
+TripPlan -right-> TripPlanHandler
+TripPlan --> IOtp
+
+@enduml
