@@ -1,6 +1,6 @@
 @startuml class
 
-title "class diagram\nreact-app-template 1.0.0"
+title "class diagram\nreact-app-example 1.0.0"
 
 interface IOtp {
   ApiTripPlan

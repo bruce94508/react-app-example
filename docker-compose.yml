@@ -1,8 +1,8 @@
 # deployment example
 version: "3.3"
 services:
-  react-app-template:
-    image: react-app-template
+  react-app-example:
+    image: react-app-example
     ports:
       - 3000:3000
     volumes:
@@ -14,9 +14,9 @@ services:
   #   ports:
   #     - 80:80
   #   extra_hosts:
-  #     - "react-app-template:10.40.201.178"
-  #     - "react-app-template-elk:10.40.201.120"
-  #     - "react-app-template-otp:10.40.201.50"
+  #     - "react-app-example:10.40.201.178"
+  #     - "react-app-example-elk:10.40.201.120"
+  #     - "react-app-example-otp:10.40.201.50"
   #   depends_on:
   #     - cms
   #   volumes:
@@ -32,27 +32,27 @@ networks:
     driver: bridge
 
 # part of default.conf:
-# location ^~ /react-app-template {
-#     rewrite ^/react-app-template/(.*)$ /$1 break;
-#     proxy_pass http://react-app-template:7790;
+# location ^~ /react-app-example {
+#     rewrite ^/react-app-example/(.*)$ /$1 break;
+#     proxy_pass http://react-app-example:7790;
 #     proxy_set_header Host $host;
 #     proxy_set_header X-Request-URI $request_uri;
 #     proxy_set_header X-Real-IP $remote_addr;
 #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 #     proxy_set_header X-Forwarded-Host $host;
 # }
-# location ^~ /react-app-template-elk {
-#     rewrite ^/react-app-template-elk/(.*)$ /$1 break;
-#     proxy_pass http://react-app-template-elk:9200;
+# location ^~ /react-app-example-elk {
+#     rewrite ^/react-app-example-elk/(.*)$ /$1 break;
+#     proxy_pass http://react-app-example-elk:9200;
 #     proxy_set_header Host $host;
 #     proxy_set_header X-Request-URI $request_uri;
 #     proxy_set_header X-Real-IP $remote_addr;
 #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 #     proxy_set_header X-Forwarded-Host $host;
 # }
-# location ^~ /react-app-template-otp {
-#     rewrite ^/react-app-template-otp/(.*)$ /$1 break;
-#     proxy_pass http://react-app-template-otp:8099;
+# location ^~ /react-app-example-otp {
+#     rewrite ^/react-app-example-otp/(.*)$ /$1 break;
+#     proxy_pass http://react-app-example-otp:8099;
 #     proxy_set_header Host $host;
 #     proxy_set_header X-Request-URI $request_uri;
 #     proxy_set_header X-Real-IP $remote_addr;

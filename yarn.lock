@@ -14037,9 +14037,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-app-template@workspace:.":
+"react-app-example@workspace:.":
   version: 0.0.0-use.local
-  resolution: "react-app-template@workspace:."
+  resolution: "react-app-example@workspace:."
   dependencies:
     "@commitlint/cli": ^17.4.4
     "@commitlint/config-conventional": ^17.4.4

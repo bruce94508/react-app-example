@@ -31,7 +31,7 @@ REACT_APP_TGOS_TILEAGENT_BASEURL| | TGOS圖資服務
  - {apiKey} REACT_APP_TGOS_ADDRESS_QUERY_APIKEY
  - {address} 輸入的搜尋字詞
 # 部署
- - [Drone CI 網址](http://cicd-so-happy.maxwin.com.tw:8080/maxwin-inc/react-app-template)
+ - [Drone CI 網址](http://cicd-so-happy.maxwin.com.tw:8080/maxwin-inc/react-app-example)
 目前已經設定好drone CI，docker image會自動在drone的主機上建立，只需要將image檔從drone主機上pull下來即可
 註: docker private repostry第一次使用需要相關設定，見[網址說明](https://hackmd.io/-Ggi0uxvQpK9nnSz21a-fA#Docker-client)
  - 配置參考 docker-compose.yml

@@ -1,6 +1,6 @@
 FROM node:18.14-buster AS builder
 
-WORKDIR /var/maxwin/react-app-template
+WORKDIR /var/maxwin/react-app-example
 COPY . .
 COPY ./.env.example ./.env
 
@@ -20,7 +20,7 @@ RUN REACT_APP_WEB_UPDATED_AT=$(date +"%Y/%m/%d") \
 
 FROM node:18.14-alpine as publish
 WORKDIR /root/
-COPY --from=builder /var/maxwin/react-app-template/build ./build
+COPY --from=builder /var/maxwin/react-app-example/build ./build
 COPY ./env.sh ./
 COPY ./.env.example ./
 RUN yarn global add serve@^14.2.0

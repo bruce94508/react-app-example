@@ -31,7 +31,7 @@ const config = {
       },
     ],
   ],
-  repositoryUrl: 'git@bitbucket.org:maxwin-inc/react-app-template.git',
+  repositoryUrl: 'git@bitbucket.org:maxwin-inc/react-app-example.git',
   tagFormat: '${version}',
 };
 
