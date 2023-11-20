@@ -4,16 +4,16 @@ WORKDIR /var/maxwin/react-app-template
 COPY . .
 COPY ./.env.example ./.env
 
-ARG SSH_KEY
-RUN if [ "$SSH_KEY" != "" ] ; then \
-  mkdir /root/.ssh \
-  && echo -n "$SSH_KEY" > /root/.ssh/id_rsa \
-  && chmod 600 /root/.ssh/id_rsa \
-  && touch /root/.ssh/known_hosts \
-  && ssh-keyscan -t rsa bitbucket.org > /root/.ssh/known_hosts \
-  else \
-   echo "no SSH_KEY found in env" \
-  fi
+# ARG SSH_KEY
+# RUN if [ "$SSH_KEY" != "" ] ; then \
+#   mkdir /root/.ssh \
+#   && echo -n "$SSH_KEY" > /root/.ssh/id_rsa \
+#   && chmod 600 /root/.ssh/id_rsa \
+#   && touch /root/.ssh/known_hosts \
+#   && ssh-keyscan -t rsa bitbucket.org > /root/.ssh/known_hosts \
+#   else \
+#    echo "no SSH_KEY found in env" \
+#   fi
 RUN yarn install --frozen-lockfile
 RUN REACT_APP_WEB_UPDATED_AT=$(date +"%Y/%m/%d") \
   yarn run build && echo "Build End"

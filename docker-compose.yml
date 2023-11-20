@@ -1,4 +1,4 @@
-# example
+# deployment example
 version: "3.3"
 services:
   react-app-template:
@@ -9,7 +9,53 @@ services:
       # manually provide .env for env.sh to make env.config.js
       - .env.local:/root/.env:ro
       # env vars unset will use default values in app, check .env.example or README.md
-
+  # nginx:
+  #   image: nginx:1.9.8
+  #   ports:
+  #     - 80:80
+  #   extra_hosts:
+  #     - "react-app-template:10.40.201.178"
+  #     - "react-app-template-elk:10.40.201.120"
+  #     - "react-app-template-otp:10.40.201.50"
+  #   depends_on:
+  #     - cms
+  #   volumes:
+  #     - ./nginx/include:/etc/nginx/include:ro
+  #     - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #   restart: always
+  #   environment:
+  #     - TZ=Asia/Taipei
+  #   command: [nginx-debug, '-g', 'daemon off;']
 networks:
   default:
     driver: bridge
+
+# part of default.conf:
+# location ^~ /react-app-template {
+#     rewrite ^/react-app-template/(.*)$ /$1 break;
+#     proxy_pass http://react-app-template:7790;
+#     proxy_set_header Host $host;
+#     proxy_set_header X-Request-URI $request_uri;
+#     proxy_set_header X-Real-IP $remote_addr;
+#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#     proxy_set_header X-Forwarded-Host $host;
+# }
+# location ^~ /react-app-template-elk {
+#     rewrite ^/react-app-template-elk/(.*)$ /$1 break;
+#     proxy_pass http://react-app-template-elk:9200;
+#     proxy_set_header Host $host;
+#     proxy_set_header X-Request-URI $request_uri;
+#     proxy_set_header X-Real-IP $remote_addr;
+#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#     proxy_set_header X-Forwarded-Host $host;
+# }
+# location ^~ /react-app-template-otp {
+#     rewrite ^/react-app-template-otp/(.*)$ /$1 break;
+#     proxy_pass http://react-app-template-otp:8099;
+#     proxy_set_header Host $host;
+#     proxy_set_header X-Request-URI $request_uri;
+#     proxy_set_header X-Real-IP $remote_addr;
+#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#     proxy_set_header X-Forwarded-Host $host;
+# }
